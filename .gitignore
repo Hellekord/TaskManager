@@ -1,0 +1,22 @@
+# Backend
+TaskManagerAPI/bin/
+TaskManagerAPI/obj/
+TaskManagerAPI/.vs/
+TaskManagerAPI/*.db
+TaskManagerAPI/*.db-shm
+TaskManagerAPI/*.db-wal
+TaskManagerAPI/*.user
+TaskManagerAPI/.vscode/
+
+# Frontend
+TaskManagerClient/node_modules/
+TaskManagerClient/dist/
+TaskManagerClient/.env.local
+TaskManagerClient/.vscode/
+
+# IDE
+.vs/
+.idea/
+*.suo
+*.user
+.DS_Store
