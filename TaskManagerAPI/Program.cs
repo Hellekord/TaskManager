@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using TaskManagerAPI.Data;
 
+//Початкова точка конфігурації.
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
@@ -11,7 +12,7 @@ builder.Services.AddSwaggerGen(c =>
 	{
 		Title = "Task Manager API",
 		Version = "v1",
-		Description = "API для управления задачами"
+		Description = "API для управління завданнями"
 	});
 });
 

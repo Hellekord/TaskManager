@@ -10,25 +10,25 @@ const api = axios.create({
 });
 
 export const taskService = {
-  // Получить все задачи с фильтром
+  // Отримати всі завдання з фільтром
   getTasks: async (status = 'all') => {
     const response = await api.get(`/tasks?status=${status}`);
     return response.data;
   },
 
-  // Создать новую задачу
+  // Створити нове завдання
   createTask: async (task) => {
     const response = await api.post('/tasks', task);
     return response.data;
   },
 
-  // Обновить задачу
+  // Оновити завдання
   updateTask: async (id, task) => {
     const response = await api.put(`/tasks/${id}`, task);
     return response.data;
   },
 
-  // Удалить задачу
+  // Видалити завдання
   deleteTask: async (id) => {
     const response = await api.delete(`/tasks/${id}`);
     return response.data;

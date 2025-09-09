@@ -14,25 +14,25 @@ function FilterButtons({ currentFilter, onFilterChange }) {
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
       <Typography variant="h6" component="div">
-        Фильтр:
+        Фільтр:
       </Typography>
       <ToggleButtonGroup
         value={currentFilter}
         exclusive
         onChange={handleChange}
-        aria-label="фильтр задач"
+        aria-label="фільтр завдань"
       >
-        <ToggleButton value="all" aria-label="все задачи">
+        <ToggleButton value="all" aria-label="всі завдання">
           <ListIcon sx={{ mr: 1 }} />
-          Все
+          Всі
         </ToggleButton>
-        <ToggleButton value="active" aria-label="активные задачи">
+        <ToggleButton value="active" aria-label="активні завдання">
           <RadioButtonUncheckedIcon sx={{ mr: 1 }} />
-          Активные
+          Активні
         </ToggleButton>
-        <ToggleButton value="completed" aria-label="завершенные задачи">
+        <ToggleButton value="completed" aria-label="завершені завдання">
           <CheckCircleIcon sx={{ mr: 1 }} />
-          Завершенные
+          Завершені
         </ToggleButton>
       </ToggleButtonGroup>
     </Box>

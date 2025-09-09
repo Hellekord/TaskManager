@@ -17,6 +17,13 @@ namespace TaskManagerAPI.Controllers
 			_context = context;
 		}
 
+
+		/// <summary>
+		/// HTTP GET: /api/tasks
+		/// Отримує список завдань з можливістю фільтрації за статусом.
+		/// </summary>
+		/// <param name="status">Параметр запиту для фільтрації ("all", "active", "completed"). За замовчуванням "all".</param>
+		/// <returns>Список завдань.</returns>
 		[HttpGet]
 		public async Task<ActionResult<IEnumerable<TaskItem>>> GetTasks([FromQuery] string? status = "all")
 		{
@@ -39,6 +46,12 @@ namespace TaskManagerAPI.Controllers
 			return Ok(tasks);
 		}
 
+		/// <summary>
+		/// HTTP GET: /api/tasks/{id}
+		/// Отримує одне конкретне завдання за його ідентифікатором (ID).
+		/// </summary>
+		/// <param name="id">Ідентифікатор завдання.</param>
+		/// <returns>Знайдене завдання або помилку 404 Not Found.</returns>
 		[HttpGet("{id}")]
 		public async Task<ActionResult<TaskItem>> GetTask(int id)
 		{
@@ -46,12 +59,18 @@ namespace TaskManagerAPI.Controllers
 
 			if (task == null)
 			{
-				return NotFound(new { message = $"Задача с ID {id} не найдена" });
+				return NotFound(new { message = $"Завдання з ID {id} не знайдено" });
 			}
 
 			return Ok(task);
 		}
 
+		/// <summary>
+		/// HTTP POST: /api/tasks
+		/// Створює нове завдання.
+		/// </summary>
+		/// <param name="createTaskDto">Дані для створення завдання, отримані з тіла запиту.</param>
+		/// <returns>Створене завдання.</returns>
 		[HttpPost]
 		public async Task<ActionResult<TaskItem>> CreateTask(CreateTaskDto createTaskDto)
 		{
@@ -74,6 +93,13 @@ namespace TaskManagerAPI.Controllers
 			return CreatedAtAction(nameof(GetTask), new { id = task.Id }, task);
 		}
 
+		/// <summary>
+		/// HTTP PUT: /api/tasks/{id}
+		/// Оновлює існуюче завдання.
+		/// </summary>
+		/// <param name="id">Ідентифікатор завдання, яке потрібно оновити.</param>
+		/// <param name="updateTaskDto">Нові дані для завдання.</param>
+		/// <returns>Оновлене завдання або код помилки.</returns>
 		[HttpPut("{id}")]
 		public async Task<IActionResult> UpdateTask(int id, UpdateTaskDto updateTaskDto)
 		{
@@ -86,7 +112,7 @@ namespace TaskManagerAPI.Controllers
 
 			if (task == null)
 			{
-				return NotFound(new { message = $"Задача с ID {id} не найдена" });
+				return NotFound(new { message = $"Завдання з ID {id} не знайдено" });
 			}
 
 			task.Title = updateTaskDto.Title;
@@ -122,6 +148,12 @@ namespace TaskManagerAPI.Controllers
 			return Ok(task);
 		}
 
+		/// <summary>
+		/// HTTP DELETE: /api/tasks/{id}
+		/// Видаляє завдання за його ідентифікатором.
+		/// </summary>
+		/// <param name="id">Ідентифікатор завдання для видалення.</param>
+		/// <returns>Повідомлення про успішне видалення або код помилки.</returns>
 		[HttpDelete("{id}")]
 		public async Task<IActionResult> DeleteTask(int id)
 		{
@@ -129,13 +161,13 @@ namespace TaskManagerAPI.Controllers
 
 			if (task == null)
 			{
-				return NotFound(new { message = $"Задача с ID {id} не найдена" });
+				return NotFound(new { message = $"Завдання з ID {id} не знайдено" });
 			}
 
 			_context.Tasks.Remove(task);
 			await _context.SaveChangesAsync();
 
-			return Ok(new { message = "Задача успешно удалена" });
+			return Ok(new { message = "Завдання успішно видалено" });
 		}
 
 		private bool TaskExists(int id)

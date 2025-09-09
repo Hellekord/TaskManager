@@ -10,19 +10,19 @@ function AddTaskForm({ onAdd }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    // Валидация
+    // Валідація
     if (!title.trim()) {
-      setError('Название задачи обязательно!');
+      setError('Назва задачі обов`язкова');
       return;
     }
 
-    // Вызов функции добавления
+    // Виклик функції додавання
     onAdd({
       title: title.trim(),
       description: description.trim()
     });
 
-    // Очистка формы
+    // Очищення форми
     setTitle('');
     setDescription('');
     setError('');
@@ -33,7 +33,7 @@ function AddTaskForm({ onAdd }) {
       <Stack spacing={2}>
         <TextField
           fullWidth
-          label="Название задачи"
+          label="Назва завдання"
           variant="outlined"
           value={title}
           onChange={(e) => {
@@ -42,18 +42,18 @@ function AddTaskForm({ onAdd }) {
           }}
           error={!!error}
           helperText={error}
-          placeholder="Например: Купить продукты"
+          placeholder="Наприклад: Купити продукти"
         />
         
         <TextField
           fullWidth
-          label="Описание (необязательно)"
+          label="Опис (не обов'язково)"
           variant="outlined"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           multiline
           rows={2}
-          placeholder="Дополнительная информация о задаче"
+          placeholder="Додаткова інформація про завдання"
         />
         
         <Button
@@ -63,7 +63,7 @@ function AddTaskForm({ onAdd }) {
           startIcon={<AddIcon />}
           sx={{ alignSelf: 'flex-start' }}
         >
-          Добавить задачу
+          Додати завдання
         </Button>
       </Stack>
     </Box>

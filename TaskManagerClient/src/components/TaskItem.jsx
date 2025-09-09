@@ -22,7 +22,7 @@ function TaskItem({ task, onToggle, onDelete }) {
     onDelete(task.id);
   };
 
-  // Форматирование даты
+  // Форматування дати
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('ru-RU', {
@@ -39,7 +39,7 @@ function TaskItem({ task, onToggle, onDelete }) {
       secondaryAction={
         <IconButton 
           edge="end" 
-          aria-label="удалить" 
+          aria-label="видалити" 
           onClick={handleDelete}
           color="error"
         >
@@ -80,7 +80,7 @@ function TaskItem({ task, onToggle, onDelete }) {
               </Typography>
               {task.isCompleted && (
                 <Chip 
-                  label="Выполнено" 
+                  label="Виконано" 
                   size="small" 
                   color="success" 
                   variant="outlined"
@@ -110,8 +110,8 @@ function TaskItem({ task, onToggle, onDelete }) {
                 color="text.disabled"
                 sx={{ display: 'block', mt: 0.5 }}
               >
-                Создано: {formatDate(task.createdAt)}
-                {task.completedAt && ` • Выполнено: ${formatDate(task.completedAt)}`}
+                Створено: {formatDate(task.createdAt)}
+                {task.completedAt && ` • Виконано: ${formatDate(task.completedAt)}`}
               </Typography>
             </>
           }

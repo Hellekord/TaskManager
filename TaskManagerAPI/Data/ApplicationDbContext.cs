@@ -11,8 +11,10 @@ namespace TaskManagerAPI.Data
 		{
 		}
 
+		//представляє таблицю "Tasks" у БД.
 		public DbSet<TaskItem> Tasks { get; set; }
 
+		// Налаштовуємо правила для таблиць
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			modelBuilder.Entity<TaskItem>()
@@ -23,20 +25,22 @@ namespace TaskManagerAPI.Data
 			modelBuilder.Entity<TaskItem>()
 				.Property(t => t.Description)
 				.HasMaxLength(1000);
+
+			// Додаємо початкові дані (seeding) в таблицю при створенні БД.
 			modelBuilder.Entity<TaskItem>().HasData(
 				new TaskItem
 				{
 					Id = 1,
-					Title = "Изучить ASP.NET Core",
-					Description = "Пройти основы Web API",
+					Title = "Вивчити ASP.NET Core",
+					Description = "Пройти основи Web API",
 					IsCompleted = false,
 					CreatedAt = DateTime.UtcNow
 				},
 				new TaskItem
 				{
 					Id = 2,
-					Title = "Создать первый API",
-					Description = "Реализовать CRUD операции",
+					Title = "Створити перший API",
+					Description = "Реалізувати CRUD операції",
 					IsCompleted = false,
 					CreatedAt = DateTime.UtcNow
 				}
