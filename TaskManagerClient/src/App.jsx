@@ -26,14 +26,14 @@ function App() {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
-  // Загрузка задач
+  // Завантаження завдань
   const loadTasks = async () => {
     setLoading(true);
     try {
       const data = await taskService.getTasks(filter);
       setTasks(data);
     } catch (err) {
-      setError('Ошибка при загрузке задач');
+      setError('Помилка під час завантаження завдань');
       console.error(err);
     } finally {
       setLoading(false);
@@ -44,46 +44,46 @@ function App() {
     loadTasks();
   }, [filter]);
 
-  // Добавление новой задачи
+  // Додавання нового завдання
   const handleAddTask = async (taskData) => {
     try {
       const newTask = await taskService.createTask(taskData);
-      setSuccess('Задача успешно добавлена!');
+      setSuccess('Завдання успішно додано!');
       loadTasks();
     } catch (err) {
-      setError('Ошибка при добавлении задачи');
+      setError('Помилка при додаванні завдання');
       console.error(err);
     }
   };
 
-  // Обновление статуса задачи
+  // Оновлення статусу завдання
   const handleToggleTask = async (id, task) => {
     try {
       await taskService.updateTask(id, {
         ...task,
         isCompleted: !task.isCompleted
       });
-      setSuccess('Задача обновлена!');
+      setSuccess('Завдання оновлено!');
       loadTasks();
     } catch (err) {
-      setError('Ошибка при обновлении задачи');
+      setError('Помилка під час оновлення завдання');
       console.error(err);
     }
   };
 
-  // Удаление задачи
+  // Видалення завдання
   const handleDeleteTask = async (id) => {
     try {
       await taskService.deleteTask(id);
-      setSuccess('Задача удалена!');
+      setSuccess('Завдання видалено!');
       loadTasks();
     } catch (err) {
-      setError('Ошибка при удалении задачи');
+      setError('Помилка під час видалення завдання');
       console.error(err);
     }
   };
 
-  // Изменение фильтра
+  // Зміна фільтра
   const handleFilterChange = (newFilter) => {
     setFilter(newFilter);
   };
@@ -97,7 +97,7 @@ function App() {
       <Container maxWidth="md">
         <Box sx={{ my: 4 }}>
           <Typography variant="h3" component="h1" gutterBottom align="center" color="primary">
-            📋 Менеджер задач
+            📋 Менеджер завдань
           </Typography>
           
           <Paper elevation={3} sx={{ p: 3, mb: 3 }}>
@@ -117,10 +117,10 @@ function App() {
             ) : tasks.length === 0 ? (
               <Typography align="center" color="textSecondary">
                 {filter === 'completed' 
-                  ? 'Нет завершенных задач' 
+                  ? 'Немає завершених завдань' 
                   : filter === 'active'
-                  ? 'Нет активных задач'
-                  : 'Список задач пуст'}
+                  ? 'Немає активних завдань'
+                  : 'Список завдань порожній'}
               </Typography>
             ) : (
               <TaskList 
